@@ -12,15 +12,17 @@ This code follows the standard beerware license: if you use it, and meet me, you
 */
 
 const int channels=8;
-const int period=60000;
+const int period=10000;
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin (9600);
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  digitalWrite(13, HIGH);
   for(int i=0; i<channels; i++){
     Serial.print("v");
     Serial.print(i+1);
@@ -28,4 +30,6 @@ void loop() {
     Serial.print(analogRead(i));
     Serial.println();
   }
+  digitalWrite(13, LOW);
+  delay(period);
 }
