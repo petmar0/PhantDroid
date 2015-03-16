@@ -12,4 +12,12 @@ v6=$(tail $dataFile | grep v6 )
 v7=$(tail $dataFile | grep v7 )
 v8=$(tail $dataFile | grep v8 )
 
-curl -G "http://data.sparkfun.com/input/$publicKey?private_key=$privateKey&$v1&$v2&$v3&$v4&$v5&$v6&$v7&$v8"
+result=$(curl -G "http://data.sparkfun.com/input/$publicKey?private_key=$privateKey&$v1&$v2&$v3&$v4&$v5&$v6&$v7&$v8")
+
+if [ "$result" = "1 success" ]
+then
+	rm data.txt
+	echo "$result"
+else
+	echo "$result"
+fi
